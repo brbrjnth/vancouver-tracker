@@ -25,16 +25,12 @@ body{font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;color:var(-
 .container{max-width:960px;margin:0 auto}
 h1{font-size:20px;font-weight:600;color:var(--text);margin-bottom:.25rem}
 .subtitle{font-size:13px;color:var(--text3);margin-bottom:1.5rem;font-family:'DM Mono',monospace}
-
-/* TABS */
 .tabs{display:flex;gap:6px;margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);flex-wrap:wrap}
 .tab{padding:8px 18px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap}
 .tab.active{background:var(--text);color:#fff;border-color:var(--text);font-weight:500}
-.tab-badge{display:inline-block;background:rgba(255,255,255,.25);color:inherit;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:5px;font-family:'DM Mono',monospace}
-.tab:not(.active) .tab-badge{background:var(--bg3);color:var(--text3)}
+.tab-badge{display:inline-block;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:5px;font-family:'DM Mono',monospace;background:var(--bg3);color:var(--text3)}
+.tab.active .tab-badge{background:rgba(255,255,255,.25);color:#fff}
 .panel{display:none}.panel.active{display:block}
-
-/* FORM */
 .form-wrap{border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;box-shadow:var(--shadow)}
 .form-header{background:var(--bg2);padding:.75rem 1.25rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
 .form-header-title{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text3)}
@@ -68,8 +64,6 @@ select[multiple]{height:76px}
 .btn-unarchive{color:var(--green-text);border-color:#C8DFB0;box-shadow:none}
 .btn-unarchive:hover{background:var(--green-bg)}
 .status{font-size:12px;color:var(--text3);font-family:'DM Mono',monospace}
-
-/* FILTER BAR */
 .filter-bar{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:.875rem 1rem;margin-bottom:1rem;box-shadow:var(--shadow)}
 .filter-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:8px;align-items:end}
 .filter-field label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:3px}
@@ -78,8 +72,6 @@ select[multiple]{height:76px}
 .sort-row label{font-size:11px;color:var(--text3);font-weight:500;white-space:nowrap}
 .sort-row select{font-size:12px;padding:5px 9px;width:auto;background:var(--bg)}
 .results-count{font-size:12px;color:var(--text3);font-family:'DM Mono',monospace;margin-left:auto}
-
-/* LISTING CARDS */
 .listings-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
 .listings-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3)}
 .lcard{border:1px solid var(--border);border-radius:var(--radius-xl);margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow);transition:border-color .2s,box-shadow .2s}
@@ -101,7 +93,6 @@ select[multiple]{height:76px}
 .b-green{background:var(--green-bg);color:var(--green-text);border-color:#C8DFB0}
 .b-red{background:var(--red-bg);color:var(--red-text);border-color:#DFB8B8}
 .b-orange{background:#FEF0E7;color:#7A3010;border-color:#F0C9A8}
-
 .lcard-body{background:var(--bg);border-bottom:1px solid var(--border);padding:.875rem 1.25rem}
 .lcard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
 .lcard-field{padding:.5rem .75rem;background:#fff;border:1px solid var(--border);border-radius:var(--radius)}
@@ -124,11 +115,7 @@ select[multiple]{height:76px}
 .lcard-section.notes-sec{background:var(--bg);font-size:13px;color:var(--text2);line-height:1.6}
 .lcard-actions{padding:.625rem 1rem;background:var(--bg2);border-top:1px solid var(--border);display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap}
 .empty{text-align:center;padding:3rem 1rem;color:var(--text3);font-size:13px;background:#fff;border:1px dashed var(--border);border-radius:var(--radius-lg)}
-
-/* ARCHIVE BANNER */
 .archive-note{font-size:12px;color:var(--amber-text);background:var(--amber-bg);border:1px solid #EDD9B0;border-radius:var(--radius);padding:4px 10px;margin-bottom:.75rem;display:inline-block;font-family:'DM Mono',monospace}
-
-/* TODO */
 .todo-cat-block{margin-bottom:1.25rem;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
 .todo-cat-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);padding:.6rem 1rem;background:var(--bg2);border-bottom:1px solid var(--border)}
 .todo-item{display:flex;align-items:flex-start;gap:10px;padding:9px 1rem;border-bottom:1px solid var(--border);background:#fff;transition:background .1s}
@@ -140,7 +127,6 @@ input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;cursor:
 .todo-counter{font-size:12px;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:1rem}
 .add-row{display:flex;gap:8px;margin-top:1.25rem;padding:1rem;background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow)}
 .add-row input{flex:1}
-
 @media(max-width:640px){
   body{padding:1rem}
   .grid4,.grid5{grid-template-columns:1fr 1fr}
@@ -159,12 +145,12 @@ input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;cursor:
 
   <div class="tabs">
     <button class="tab active" onclick="switchTab('add')">Add listing</button>
-    <button class="tab" onclick="switchTab('listings')" id="tab-listings">Listings <span class="tab-badge" id="badge-active">0</span></button>
-    <button class="tab" onclick="switchTab('archived')" id="tab-archived">Archived <span class="tab-badge" id="badge-archived">0</span></button>
+    <button class="tab" onclick="switchTab('listings')">Listings <span class="tab-badge" id="badge-active">0</span></button>
+    <button class="tab" onclick="switchTab('archived')">Archived <span class="tab-badge" id="badge-archived">0</span></button>
     <button class="tab" onclick="switchTab('todo')">To-do list</button>
   </div>
 
-  <!-- ADD LISTING PANEL -->
+  <!-- ADD LISTING -->
   <div id="add" class="panel active">
     <div class="form-wrap" id="form-wrap">
       <div class="form-header">
@@ -178,8 +164,8 @@ input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;cursor:
           <div class="grid4">
             <div class="field"><label>City</label><select id="h-city"><option value="">Select...</option><option>Vancouver</option><option>East Vancouver</option><option>North Vancouver</option><option>Burnaby</option><option>New Westminster</option><option>Other</option></select></div>
             <div class="field"><label>Neighbourhood</label><input id="h-hood" placeholder="e.g. Mount Pleasant"/></div>
-            <div class="field"><label>Housing type</label><select id="h-type"><option value="">Select...</option><option>Apartment</option><option>Condo</option><option>Basement suite</option><option>Laneway house</option><option>Garden suite</option><option>Coach house</option><option>House (full)</option><option>Room in house</option><option>Studio</option></select></div>
-            <div class="field"><label>Size</label><select id="h-size"><option value="">Select...</option><option>Studio</option><option>1 bed</option><option>2 bed</option><option>Room in shared</option></select></div>
+            <div class="field"><label>Housing type</label><select id="h-type"><option value="">Select...</option><option>Apartment</option><option>Condo</option><option>Basement suite</option><option>Laneway house</option><option>Garden suite</option><option>Coach house</option><option>House (full)</option><option>Room in house</option><option>Studio</option><option>Not stated</option></select></div>
+            <div class="field"><label>Size</label><select id="h-size"><option value="">Select...</option><option>Studio</option><option>1 bed</option><option>2 bed</option><option>3 bed</option><option>Room in shared</option><option>Not stated</option></select></div>
           </div>
         </div>
         <div class="field-group">
@@ -190,17 +176,18 @@ input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;cursor:
             <div class="field"><label>Date entered</label><input id="h-entered" type="date"/></div>
             <div class="field"><label>Move-in date</label><input id="h-movein" type="date"/></div>
           </div>
-          <div class="grid4" style="margin-top:10px">
+          <div class="grid5" style="margin-top:10px">
             <div class="field"><label>Platform</label><select id="h-platform"><option value="">Select...</option><option>Craigslist</option><option>Facebook Marketplace</option><option>Padmapper</option><option>PadSplit</option><option>Kijiji</option><option>Other</option></select></div>
             <div class="field"><label>Pets allowed</label><select id="h-pets"><option value="">Select...</option><option>Yes — all pets</option><option>Yes — cats only</option><option>Yes — small dogs</option><option>Yes — negotiable</option><option>No pets</option><option>Not stated</option></select></div>
-            <div class="field"><label>Furnished</label><select id="h-furnished"><option value="">Select...</option><option>Furnished</option><option>Unfurnished</option><option>Partially furnished</option></select></div>
-            <div class="field"><label>Lease type</label><select id="h-lease"><option value="">Select...</option><option>Short term (1–2 months)</option><option>3 months</option><option>6 months</option><option>12 months</option><option>Month to month</option><option>Fixed term (other)</option></select></div>
+            <div class="field"><label>Furnished</label><select id="h-furnished"><option value="">Select...</option><option>Furnished</option><option>Unfurnished</option><option>Partially furnished</option><option>Not stated</option></select></div>
+            <div class="field"><label>Lease type</label><select id="h-lease"><option value="">Select...</option><option>Short term (1–2 months)</option><option>3 months</option><option>6 months</option><option>12 months</option><option>Month to month</option><option>Fixed term (other)</option><option>Not stated</option></select></div>
+            <div class="field"><label>Utilities</label><select id="h-utils"><option value="">Select...</option><option>All included</option><option>Hydro extra</option><option>None included</option><option>Partial</option><option>Not stated</option></select></div>
           </div>
           <div class="grid4" style="margin-top:10px">
-            <div class="field"><label>Utilities</label><select id="h-utils"><option value="">Select...</option><option>All included</option><option>Hydro extra</option><option>None included</option><option>Partial</option></select></div>
-            <div class="field"><label>Laundry</label><select id="h-laundry"><option value="">Select...</option><option>In-suite</option><option>In-building shared</option><option>Laundromat nearby</option><option>None</option></select></div>
+            <div class="field"><label>Laundry</label><select id="h-laundry"><option value="">Select...</option><option>In-suite</option><option>Washer only</option><option>In-building shared</option><option>Laundromat nearby</option><option>None</option><option>Not stated</option></select></div>
             <div class="field"><label>Dishwasher</label><select id="h-dishwasher"><option value="">Select...</option><option>Yes</option><option>No</option><option>Not stated</option></select></div>
             <div class="field"><label>Requirements</label><select id="h-reqs" multiple><option>References</option><option>Credit check</option><option>First + last month</option><option>Employment proof</option><option>No pets</option><option>No smoking</option></select></div>
+            <div class="field"><label>&nbsp;</label></div>
           </div>
           <div class="grid2" style="margin-top:10px">
             <div class="field"><label>Perks</label><textarea id="h-perks" placeholder="e.g. natural light, quiet street, close to transit..."></textarea></div>
@@ -227,7 +214,7 @@ input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;cursor:
     </div>
   </div>
 
-  <!-- LISTINGS PANEL -->
+  <!-- LISTINGS -->
   <div id="listings" class="panel">
     <div class="filter-bar">
       <div class="filter-row">
@@ -250,22 +237,18 @@ input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;cursor:
         <span class="results-count" id="results-count"></span>
       </div>
     </div>
-    <div class="listings-header">
-      <span class="listings-label" id="h-count"></span>
-    </div>
+    <div class="listings-header"><span class="listings-label" id="h-count"></span></div>
     <div id="listings-list"></div>
   </div>
 
-  <!-- ARCHIVED PANEL -->
+  <!-- ARCHIVED -->
   <div id="archived" class="panel">
     <div class="archive-note">Archived listings are no longer active but kept for reference</div>
-    <div class="listings-header">
-      <span class="listings-label" id="h-count-archived"></span>
-    </div>
+    <div class="listings-header"><span class="listings-label" id="h-count-archived"></span></div>
     <div id="archived-list"></div>
   </div>
 
-  <!-- TODO PANEL -->
+  <!-- TODO -->
   <div id="todo" class="panel">
     <div id="todo-list"></div>
     <div class="add-row">
@@ -349,11 +332,10 @@ function updateBadges(){
 }
 
 function switchTab(t){
-  document.querySelectorAll('.tab').forEach(el=>el.classList.remove('active'));
+  const tabs=['add','listings','archived','todo'];
+  document.querySelectorAll('.tab').forEach((el,i)=>el.classList.toggle('active',tabs[i]===t));
   document.querySelectorAll('.panel').forEach(el=>el.classList.remove('active'));
   document.getElementById(t).classList.add('active');
-  const tabs=['add','listings','archived','todo'];
-  document.querySelectorAll('.tab')[tabs.indexOf(t)].classList.add('active');
 }
 
 const TEXT_FIELDS=['h-hood','h-rent','h-date','h-entered','h-movein','h-oname','h-ophone','h-oemail','h-perks','h-cons','h-notes'];
@@ -381,10 +363,14 @@ function editListing(id){
   Object.entries(map).forEach(([k,fid])=>{const el=document.getElementById(fid);if(el&&l[k]!==undefined)el.value=l[k];});
   if(l.reqs){const sel=document.getElementById('h-reqs');Array.from(sel.options).forEach(o=>o.selected=l.reqs.includes(o.value));}
   switchTab('add');
-  document.getElementById('form-wrap').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function cancelEdit(){clearForm();}
+
+function fmtCurrency(val){
+  if(!val)return'';
+  return'$'+Number(val).toLocaleString('en-CA',{minimumFractionDigits:0,maximumFractionDigits:0});
+}
 
 function saveListing(){
   const hood=document.getElementById('h-hood').value.trim();
@@ -483,7 +469,7 @@ function cardHTML(l,isArchived=false){
           <div class="lcard-loc">${[l.city,l.hood].filter(Boolean).join(', ')}${l.htype?' — '+l.htype:''}${l.size?' ('+l.size+')':''}</div>
           <div class="lcard-sub">${[l.platform,l.date?'listed '+fmt(l.date):'',l.entered?'entered '+fmt(l.entered):''].filter(Boolean).join(' · ')}</div>
         </div>
-        ${l.rent?`<div><div class="lcard-price">$${Number(l.rent).toLocaleString()}<span class="lcard-price-unit"> /mo</span></div></div>`:''}
+        ${l.rent?`<div><div class="lcard-price">${fmtCurrency(l.rent)}<span class="lcard-price-unit"> /mo</span></div></div>`:''}
       </div>
       <div class="lcard-badges">
         ${l.furnished?`<span class="badge ${l.furnished==='Furnished'?'b-teal':'b-gray'}">${l.furnished}</span>`:''}
@@ -531,7 +517,7 @@ function renderArchived(){
   const ct=document.getElementById('h-count-archived');
   const list=(state.listings||[]).filter(l=>l.archived);
   ct.textContent=list.length?list.length+' archived listing'+(list.length!==1?'s':''):'';
-  if(!list.length){el.innerHTML='<div class="empty">No archived listings yet — archive listings that are no longer available to keep them for reference</div>';return;}
+  if(!list.length){el.innerHTML='<div class="empty">No archived listings yet</div>';return;}
   el.innerHTML=list.map(l=>cardHTML(l,true)).join('');
 }
 
