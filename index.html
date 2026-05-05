@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bt's Vancouver Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAFAF8;--bg2:#F2F1EE;--bg3:#E8E7E3;
+  --text:#1A1A18;--text2:#4A4A46;--text3:#8A8A84;
+  --border:#DDDDD8;--border2:#C8C8C2;
+  --teal-bg:#E1F5EE;--teal-text:#085041;
+  --green-bg:#EAF3DE;--green-text:#27500A;
+  --red-bg:#FCEBEB;--red-text:#791F1F;
+  --purple-bg:#EEEDFE;--purple-text:#3C3489;
+  --amber-bg:#FAEEDA;--amber-text:#633806;
+  --blue-bg:#E6F1FB;--blue-text:#0C447C;
+  --radius:10px;--radius-lg:14px;--radius-xl:18px;
+  --shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+}
+body{font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;color:var(--text);background:var(--bg);min-height:100vh;padding:1.5rem}
+.container{max-width:900px;margin:0 auto}
+h1{font-size:20px;font-weight:600;color:var(--text);margin-bottom:.25rem}
+.subtitle{font-size:13px;color:var(--text3);margin-bottom:1.5rem;font-family:'DM Mono',monospace}
+
+/* TABS */
+.tabs{display:flex;gap:6px;margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border)}
+.tab{padding:8px 18px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.tab.active{background:var(--text);color:#fff;border-color:var(--text);font-weight:500}
+.panel{display:none}.panel.active{display:block}
+
+/* FORM */
+.form-wrap{border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+.form-header{background:var(--bg2);padding:.75rem 1.25rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.form-header-title{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text3)}
+.form-body{padding:1.25rem;background:#fff}
+.field-group{margin-bottom:1.25rem;padding:1rem;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg)}
+.field-group:last-of-type{margin-bottom:0}
+.group-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px}
+.grid5{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:10px}
+.field{display:flex;flex-direction:column;gap:3px}
+.field label{font-size:11px;color:var(--text3);font-weight:500;letter-spacing:.03em}
+input,select,textarea{width:100%;font-size:13px;padding:8px 10px;border-radius:var(--radius);border:1px solid var(--border);background:#fff;color:var(--text);font-family:'DM Sans',sans-serif;transition:border-color .15s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--border2);box-shadow:0 0 0 3px rgba(0,0,0,.04)}
+input::placeholder,textarea::placeholder{color:var(--text3)}
+textarea{resize:vertical;min-height:56px}
+select[multiple]{height:76px}
+.form-actions{display:flex;align-items:center;gap:10px;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--border)}
+.btn{padding:8px 18px;border-radius:var(--radius);border:1px solid var(--border);background:#fff;color:var(--text);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;transition:all .15s;box-shadow:var(--shadow)}
+.btn:hover{background:var(--bg2);border-color:var(--border2)}
+.btn-primary{background:var(--text);color:#fff;border-color:var(--text)}
+.btn-primary:hover{opacity:.85;background:var(--text)}
+.btn-sm{padding:5px 11px;font-size:12px;box-shadow:none}
+.btn-ghost{border-color:transparent;color:var(--text2);box-shadow:none}
+.btn-ghost:hover{background:var(--bg2);border-color:var(--border)}
+.btn-danger{color:#791F1F;border-color:#DBBDBD;box-shadow:none}
+.btn-danger:hover{background:var(--red-bg)}
+.status{font-size:12px;color:var(--text3);font-family:'DM Mono',monospace}
+
+/* FILTER BAR */
+.filter-bar{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:.875rem 1rem;margin-bottom:1rem;box-shadow:var(--shadow)}
+.filter-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:8px;align-items:end}
+.filter-field label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:3px}
+.filter-field select,.filter-field input{font-size:12px;padding:6px 9px;background:var(--bg)}
+.sort-row{display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.sort-row label{font-size:11px;color:var(--text3);font-weight:500;white-space:nowrap}
+.sort-row select{font-size:12px;padding:5px 9px;width:auto;background:var(--bg)}
+.results-count{font-size:12px;color:var(--text3);font-family:'DM Mono',monospace;margin-left:auto}
+
+/* LISTING CARDS */
+.listings-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
+.listings-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3)}
+.lcard{border:1px solid var(--border);border-radius:var(--radius-xl);margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow);transition:border-color .2s,box-shadow .2s}
+.lcard:hover{border-color:var(--border2);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.lcard-top{padding:1rem 1.25rem;background:#fff;border-bottom:1px solid var(--border)}
+.lcard-meta{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.lcard-loc{font-size:15px;font-weight:600;color:var(--text);line-height:1.3}
+.lcard-sub{font-size:11px;color:var(--text3);margin-top:3px;font-family:'DM Mono',monospace;letter-spacing:.01em}
+.lcard-price{font-size:19px;font-weight:600;color:var(--text);white-space:nowrap;line-height:1}
+.lcard-price-unit{font-size:11px;font-weight:400;color:var(--text2)}
+.lcard-badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.badge{display:inline-flex;align-items:center;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500;font-family:'DM Mono',monospace;letter-spacing:.02em;border:1px solid transparent}
+.b-teal{background:var(--teal-bg);color:var(--teal-text);border-color:#C0E8D8}
+.b-gray{background:var(--bg2);color:var(--text2);border-color:var(--border)}
+.b-purple{background:var(--purple-bg);color:var(--purple-text);border-color:#D5D3F8}
+.b-amber{background:var(--amber-bg);color:var(--amber-text);border-color:#EDD9B0}
+.b-blue{background:var(--blue-bg);color:var(--blue-text);border-color:#C0D8EF}
+.b-green{background:var(--green-bg);color:var(--green-text);border-color:#C8DFB0}
+.b-red{background:var(--red-bg);color:var(--red-text);border-color:#DFB8B8}
+
+.lcard-body{background:var(--bg);border-bottom:1px solid var(--border);padding:.875rem 1.25rem}
+.lcard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+.lcard-field{padding:.5rem .75rem;background:#fff;border:1px solid var(--border);border-radius:var(--radius)}
+.lf-label{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text3);margin-bottom:2px}
+.lf-val{font-size:13px;color:var(--text);font-weight:500}
+.lcard-section{border-bottom:1px solid var(--border);padding:.875rem 1.25rem}
+.lcard-section:last-of-type{border-bottom:none}
+.lcard-section.perks{display:grid;grid-template-columns:1fr 1fr;gap:1rem;background:#fff}
+.perk-col{padding:.625rem .875rem;border-radius:var(--radius);border:1px solid var(--border)}
+.perk-col.good{background:var(--green-bg);border-color:#C8DFB0}
+.perk-col.bad{background:var(--red-bg);border-color:#DFB8B8}
+.pk-head{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px}
+.perk-col.good .pk-head{color:var(--green-text)}
+.perk-col.bad .pk-head{color:var(--red-text)}
+.pk-body{font-size:13px;color:var(--text2);line-height:1.5}
+.lcard-section.contact{background:var(--bg)}
+.contact-label{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
+.contact-vals{display:flex;flex-wrap:wrap;gap:6px}
+.contact-chip{font-size:12px;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:4px 10px;font-family:'DM Mono',monospace}
+.lcard-section.notes-sec{background:var(--bg);font-size:13px;color:var(--text2);line-height:1.6}
+.lcard-actions{padding:.625rem 1rem;background:var(--bg2);border-top:1px solid var(--border);display:flex;gap:6px;justify-content:flex-end}
+.empty{text-align:center;padding:3rem 1rem;color:var(--text3);font-size:13px;background:#fff;border:1px dashed var(--border);border-radius:var(--radius-lg)}
+
+/* TODO */
+.todo-cat-block{margin-bottom:1.25rem;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
+.todo-cat-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);padding:.6rem 1rem;background:var(--bg2);border-bottom:1px solid var(--border)}
+.todo-item{display:flex;align-items:flex-start;gap:10px;padding:9px 1rem;border-bottom:1px solid var(--border);background:#fff;transition:background .1s}
+.todo-item:hover{background:var(--bg)}
+.todo-item:last-child{border-bottom:none}
+input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;cursor:pointer;accent-color:var(--text)}
+.todo-text{font-size:14px;color:var(--text);flex:1;line-height:1.5}
+.todo-text.done{text-decoration:line-through;color:var(--text3)}
+.todo-counter{font-size:12px;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:1rem}
+.add-row{display:flex;gap:8px;margin-top:1.25rem;padding:1rem;background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow)}
+.add-row input{flex:1}
+
+@media(max-width:640px){
+  body{padding:1rem}
+  .grid4,.grid5{grid-template-columns:1fr 1fr}
+  .grid3{grid-template-columns:1fr 1fr}
+  .filter-row{grid-template-columns:1fr 1fr}
+  .lcard-section.perks{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Bt's Vancouver Tracker</h1>
+  <p class="subtitle">Housing listings + to-do list</p>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('housing')">Vancouver housing</button>
+    <button class="tab" onclick="switchTab('todo')">To-do list</button>
+  </div>
+
+  <!-- HOUSING PANEL -->
+  <div id="housing" class="panel active">
+    <div class="form-wrap" id="form-wrap">
+      <div class="form-header">
+        <span class="form-header-title" id="form-title">New listing</span>
+        <button class="btn btn-ghost btn-sm" id="form-cancel-btn" style="display:none" onclick="cancelEdit()">Cancel</button>
+      </div>
+      <div class="form-body">
+        <input type="hidden" id="edit-id"/>
+        <div class="field-group">
+          <div class="group-label">Location & type</div>
+          <div class="grid4">
+            <div class="field"><label>City</label><select id="h-city"><option value="">Select...</option><option>Vancouver</option><option>East Vancouver</option><option>North Vancouver</option><option>Burnaby</option><option>New Westminster</option><option>Other</option></select></div>
+            <div class="field"><label>Neighbourhood</label><input id="h-hood" placeholder="e.g. Mount Pleasant"/></div>
+            <div class="field"><label>Housing type</label><select id="h-type"><option value="">Select...</option><option>Apartment</option><option>Condo</option><option>Basement suite</option><option>Laneway house</option><option>Garden suite</option><option>Coach house</option><option>House (full)</option><option>Room in house</option><option>Studio</option></select></div>
+            <div class="field"><label>Size</label><select id="h-size"><option value="">Select...</option><option>Studio</option><option>1 bed</option><option>2 bed</option><option>Room in shared</option></select></div>
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="group-label">Listing details</div>
+          <div class="grid4">
+            <div class="field"><label>Monthly rent (CAD $)</label><input id="h-rent" type="number" placeholder="1800"/></div>
+            <div class="field"><label>Date posted</label><input id="h-date" type="date"/></div>
+            <div class="field"><label>Date entered</label><input id="h-entered" type="date"/></div>
+            <div class="field"><label>Platform</label><select id="h-platform"><option value="">Select...</option><option>Craigslist</option><option>Facebook Marketplace</option><option>Padmapper</option><option>PadSplit</option><option>Kijiji</option><option>Other</option></select></div>
+          </div>
+          <div class="grid5" style="margin-top:10px">
+            <div class="field"><label>Pets allowed</label><select id="h-pets"><option value="">Select...</option><option>Yes — all pets</option><option>Yes — cats only</option><option>Yes — small dogs</option><option>Yes — negotiable</option><option>No pets</option><option>Not stated</option></select></div>
+            <div class="field"><label>Furnished</label><select id="h-furnished"><option value="">Select...</option><option>Furnished</option><option>Unfurnished</option><option>Partially furnished</option></select></div>
+            <div class="field"><label>Lease type</label><select id="h-lease"><option value="">Select...</option><option>Short term (1–2 months)</option><option>3 months</option><option>6 months</option><option>12 months</option><option>Month to month</option><option>Fixed term (other)</option></select></div>
+            <div class="field"><label>Utilities</label><select id="h-utils"><option value="">Select...</option><option>All included</option><option>Hydro extra</option><option>None included</option><option>Partial</option></select></div>
+            <div class="field"><label>Laundry</label><select id="h-laundry"><option value="">Select...</option><option>In-suite</option><option>In-building shared</option><option>Laundromat nearby</option><option>None</option></select></div>
+          </div>
+          <div class="grid2" style="margin-top:10px">
+            <div class="field"><label>Dishwasher</label><select id="h-dishwasher"><option value="">Select...</option><option>Yes</option><option>No</option><option>Not stated</option></select></div>
+            <div class="field"><label>Requirements (hold Ctrl/Cmd to select multiple)</label><select id="h-reqs" multiple><option>References</option><option>Credit check</option><option>First + last month</option><option>Employment proof</option><option>No pets</option><option>No smoking</option></select></div>
+          </div>
+          <div class="grid2" style="margin-top:10px">
+            <div class="field"><label>Perks</label><textarea id="h-perks" placeholder="e.g. natural light, quiet street, close to transit..."></textarea></div>
+            <div class="field"><label>Downsides</label><textarea id="h-cons" placeholder="e.g. no storage, busy road, small windows..."></textarea></div>
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="group-label">Owner / agent</div>
+          <div class="grid3">
+            <div class="field"><label>Name</label><input id="h-oname" placeholder="Owner or agent name"/></div>
+            <div class="field"><label>Phone</label><input id="h-ophone" placeholder="604-555-0100"/></div>
+            <div class="field"><label>Email</label><input id="h-oemail" placeholder="owner@email.com"/></div>
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="group-label">Notes</div>
+          <div class="field"><textarea id="h-notes" placeholder="Gut feeling, red flags, follow-up needed..."></textarea></div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="saveListing()" id="save-btn">Save listing</button>
+          <span class="status" id="h-status"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <div class="filter-row">
+        <div class="filter-field"><label>City</label><select id="f-city" onchange="renderListings()"><option value="">All cities</option><option>Vancouver</option><option>East Vancouver</option><option>North Vancouver</option><option>Burnaby</option><option>New Westminster</option><option>Other</option></select></div>
+        <div class="filter-field"><label>Housing type</label><select id="f-type" onchange="renderListings()"><option value="">All types</option><option>Apartment</option><option>Condo</option><option>Basement suite</option><option>Laneway house</option><option>Garden suite</option><option>Coach house</option><option>House (full)</option><option>Room in house</option><option>Studio</option></select></div>
+        <div class="filter-field"><label>Pets</label><select id="f-pets" onchange="renderListings()"><option value="">Any</option><option value="yes">Pets allowed</option><option value="no">No pets</option></select></div>
+        <div class="filter-field"><label>Max rent (CAD $)</label><input id="f-rent" type="number" placeholder="e.g. 2000" oninput="renderListings()"/></div>
+        <div class="filter-field"><button class="btn btn-ghost btn-sm" onclick="clearFilters()" style="margin-top:18px">Clear</button></div>
+      </div>
+      <div class="sort-row">
+        <label>Sort by</label>
+        <select id="f-sort" onchange="renderListings()">
+          <option value="newest">Date entered (newest first)</option>
+          <option value="oldest">Date entered (oldest first)</option>
+          <option value="rent-asc">Rent (low to high)</option>
+          <option value="rent-desc">Rent (high to low)</option>
+          <option value="listed-new">Date posted (newest)</option>
+        </select>
+        <span class="results-count" id="results-count"></span>
+      </div>
+    </div>
+
+    <div class="listings-header">
+      <span class="listings-label" id="h-count"></span>
+    </div>
+    <div id="listings-list"></div>
+  </div>
+
+  <!-- TODO PANEL -->
+  <div id="todo" class="panel">
+    <div id="todo-list"></div>
+    <div class="add-row">
+      <input id="new-todo" placeholder="Add a task..." onkeydown="if(event.key==='Enter')addTodo()"/>
+      <select id="new-cat" style="width:160px">
+        <option>General</option><option>Melbourne</option><option>Gold Coast</option>
+        <option>Canada / finances</option><option>Housing</option><option>Documents</option>
+      </select>
+      <button class="btn btn-primary" onclick="addTodo()">Add</button>
+    </div>
+    <div style="margin-top:.75rem"><span class="status" id="t-status"></span></div>
+  </div>
+</div>
+
+<script>
+const API='https://api.anthropic.com/v1/messages';
+const MODEL='claude-sonnet-4-20250514';
+const STORAGE_KEY='bt-tracker-v3';
+let state={listings:[],todos:[]};
+let saving=false;
+
+const defaultTodos=[
+  {id:1,text:'Get a rental reference from Melbourne host or accommodation provider',cat:'Melbourne',done:false},
+  {id:2,text:'Get a rental reference from Gold Coast host or accommodation provider',cat:'Gold Coast',done:false},
+  {id:3,text:'Withdraw money / sort TFSA',cat:'Canada / finances',done:false},
+  {id:4,text:'Get employment letter or proof of work history',cat:'Documents',done:false},
+  {id:5,text:'Complete Canadian taxes (call CRA when back in Canada)',cat:'Canada / finances',done:false},
+  {id:6,text:'Sort storage unit — dispose of excess, cancel unit ASAP',cat:'General',done:false},
+  {id:7,text:'Research Vancouver neighbourhoods and set a budget',cat:'Housing',done:false},
+  {id:8,text:'Build Trusted Housesitters / MadPaws profile',cat:'General',done:false},
+  {id:9,text:'Start saving listings to housing tracker',cat:'Housing',done:false},
+  {id:10,text:'Confirm Thredbo start date and accommodation',cat:'General',done:false},
+];
+
+async function cloudGet(){
+  try{
+    const res=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:MODEL,max_tokens:1000,system:'You are a key-value store. When asked to GET a key, return ONLY the raw JSON value stored for that key, or the literal text NULL if not found. No explanation, no markdown.',messages:[{role:'user',content:`GET ${STORAGE_KEY}`}]})});
+    const d=await res.json();
+    const text=d.content?.find(b=>b.type==='text')?.text?.trim();
+    if(text&&text!=='NULL')return JSON.parse(text);
+  }catch(e){}
+  return null;
+}
+
+async function cloudSet(data){
+  try{
+    await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:MODEL,max_tokens:100,system:'You are a key-value store. When asked to SET a key to a value, reply only with the word SAVED.',messages:[{role:'user',content:`SET ${STORAGE_KEY} = ${JSON.stringify(data)}`}]})});
+  }catch(e){}
+}
+
+async function save(statusId){
+  if(saving)return;
+  saving=true;
+  const el=statusId?document.getElementById(statusId):null;
+  if(el)el.textContent='Saving...';
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+  await cloudSet(state);
+  if(el){el.textContent='Saved ✓';setTimeout(()=>{el.textContent='';},2500);}
+  saving=false;
+}
+
+async function init(){
+  const local=localStorage.getItem(STORAGE_KEY);
+  if(local){try{state=JSON.parse(local);}catch(e){}}
+  if(!state.todos||!state.todos.length)state.todos=defaultTodos;
+  renderListings();renderTodos();
+  const cloud=await cloudGet();
+  if(cloud){
+    state=cloud;
+    if(!state.todos||!state.todos.length)state.todos=defaultTodos;
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+    renderListings();renderTodos();
+  }
+}
+
+function switchTab(t){
+  document.querySelectorAll('.tab').forEach((el,i)=>el.classList.toggle('active',['housing','todo'][i]===t));
+  document.querySelectorAll('.panel').forEach(el=>el.classList.remove('active'));
+  document.getElementById(t).classList.add('active');
+}
+
+const TEXT_FIELDS=['h-hood','h-rent','h-date','h-entered','h-oname','h-ophone','h-oemail','h-perks','h-cons','h-notes'];
+const SELECT_FIELDS=['h-city','h-type','h-size','h-platform','h-pets','h-furnished','h-lease','h-utils','h-laundry','h-dishwasher'];
+
+function clearForm(){
+  TEXT_FIELDS.forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  SELECT_FIELDS.forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('h-reqs').selectedIndex=-1;
+  document.getElementById('edit-id').value='';
+  document.getElementById('form-title').textContent='New listing';
+  document.getElementById('save-btn').textContent='Save listing';
+  document.getElementById('form-cancel-btn').style.display='none';
+}
+
+function editListing(id){
+  const l=state.listings.find(x=>x.id===id);
+  if(!l)return;
+  clearForm();
+  document.getElementById('edit-id').value=id;
+  document.getElementById('form-title').textContent='Edit listing';
+  document.getElementById('save-btn').textContent='Update listing';
+  document.getElementById('form-cancel-btn').style.display='inline-block';
+  const map={city:'h-city',hood:'h-hood',htype:'h-type',size:'h-size',rent:'h-rent',date:'h-date',entered:'h-entered',platform:'h-platform',pets:'h-pets',furnished:'h-furnished',lease:'h-lease',utils:'h-utils',laundry:'h-laundry',dishwasher:'h-dishwasher',perks:'h-perks',cons:'h-cons',oname:'h-oname',ophone:'h-ophone',oemail:'h-oemail',notes:'h-notes'};
+  Object.entries(map).forEach(([k,fid])=>{const el=document.getElementById(fid);if(el&&l[k]!==undefined)el.value=l[k];});
+  if(l.reqs){const sel=document.getElementById('h-reqs');Array.from(sel.options).forEach(o=>o.selected=l.reqs.includes(o.value));}
+  document.getElementById('form-wrap').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function cancelEdit(){clearForm();}
+
+function saveListing(){
+  const hood=document.getElementById('h-hood').value.trim();
+  if(!hood){document.getElementById('h-status').textContent='Add a neighbourhood first';return;}
+  const reqs=Array.from(document.getElementById('h-reqs').selectedOptions).map(o=>o.value);
+  const editId=document.getElementById('edit-id').value;
+  const data={
+    city:document.getElementById('h-city').value,
+    hood,htype:document.getElementById('h-type').value,
+    platform:document.getElementById('h-platform').value,
+    size:document.getElementById('h-size').value,
+    rent:document.getElementById('h-rent').value,
+    date:document.getElementById('h-date').value,
+    entered:document.getElementById('h-entered').value||new Date().toISOString().slice(0,10),
+    furnished:document.getElementById('h-furnished').value,
+    lease:document.getElementById('h-lease').value,
+    utils:document.getElementById('h-utils').value,
+    laundry:document.getElementById('h-laundry').value,
+    dishwasher:document.getElementById('h-dishwasher').value,
+    pets:document.getElementById('h-pets').value,
+    reqs,
+    perks:document.getElementById('h-perks').value.trim(),
+    cons:document.getElementById('h-cons').value.trim(),
+    oname:document.getElementById('h-oname').value.trim(),
+    ophone:document.getElementById('h-ophone').value.trim(),
+    oemail:document.getElementById('h-oemail').value.trim(),
+    notes:document.getElementById('h-notes').value.trim()
+  };
+  if(editId){
+    const idx=state.listings.findIndex(x=>x.id==editId);
+    if(idx>-1)state.listings[idx]={...state.listings[idx],...data};
+  }else{
+    state.listings.unshift({id:Date.now(),...data});
+  }
+  clearForm();renderListings();save('h-status');
+}
+
+function removeListing(id){
+  if(!confirm('Remove this listing?'))return;
+  state.listings=state.listings.filter(l=>l.id!==id);
+  renderListings();save('h-status');
+}
+
+function clearFilters(){
+  ['f-city','f-type','f-sort'].forEach(id=>document.getElementById(id).value=id==='f-sort'?'newest':'');
+  document.getElementById('f-pets').value='';
+  document.getElementById('f-rent').value='';
+  renderListings();
+}
+
+function getFiltered(){
+  let list=[...state.listings];
+  const fc=document.getElementById('f-city').value;
+  const ft=document.getElementById('f-type').value;
+  const fp=document.getElementById('f-pets').value;
+  const fr=document.getElementById('f-rent').value;
+  const fs=document.getElementById('f-sort').value;
+  if(fc)list=list.filter(l=>l.city===fc);
+  if(ft)list=list.filter(l=>l.htype===ft);
+  if(fp==='yes')list=list.filter(l=>l.pets&&l.pets.startsWith('Yes'));
+  if(fp==='no')list=list.filter(l=>l.pets&&l.pets.includes('No'));
+  if(fr)list=list.filter(l=>l.rent&&Number(l.rent)<=Number(fr));
+  list.sort((a,b)=>{
+    if(fs==='rent-asc')return(Number(a.rent)||0)-(Number(b.rent)||0);
+    if(fs==='rent-desc')return(Number(b.rent)||0)-(Number(a.rent)||0);
+    if(fs==='oldest')return(a.entered||'').localeCompare(b.entered||'');
+    if(fs==='listed-new')return(b.date||'').localeCompare(a.date||'');
+    return(b.entered||'').localeCompare(a.entered||'');
+  });
+  return list;
+}
+
+function leaseBadge(l){if(!l)return'b-gray';if(l.includes('Short'))return'b-purple';if(l.includes('12'))return'b-amber';if(l.includes('Month'))return'b-gray';return'b-blue';}
+function petBadge(p){if(!p)return'b-gray';if(p.includes('No'))return'b-red';if(p.includes('Yes'))return'b-green';return'b-gray';}
+function fmt(d){if(!d)return'';const[y,m,dd]=d.split('-');return`${dd}/${m}/${y}`;}
+
+function renderListings(){
+  const el=document.getElementById('listings-list');
+  const ct=document.getElementById('h-count');
+  const rc=document.getElementById('results-count');
+  const total=state.listings.length;
+  const list=getFiltered();
+  ct.textContent=total?total+' listing'+(total>1?'s':'')+' saved':'';
+  rc.textContent=list.length!==total?`Showing ${list.length} of ${total}`:'';
+  if(!total){el.innerHTML='<div class="empty">No listings yet — fill in the form above to add your first one</div>';return;}
+  if(!list.length){el.innerHTML='<div class="empty">No listings match your current filters</div>';return;}
+  el.innerHTML=list.map(l=>`
+    <div class="lcard">
+      <div class="lcard-top">
+        <div class="lcard-meta">
+          <div>
+            <div class="lcard-loc">${[l.city,l.hood].filter(Boolean).join(', ')}${l.htype?' — '+l.htype:''}${l.size?' ('+l.size+')':''}</div>
+            <div class="lcard-sub">${[l.platform,l.date?'listed '+fmt(l.date):'',l.entered?'entered '+fmt(l.entered):''].filter(Boolean).join(' · ')}</div>
+          </div>
+          ${l.rent?`<div><div class="lcard-price">$${Number(l.rent).toLocaleString()}<span class="lcard-price-unit"> /mo</span></div></div>`:''}
+        </div>
+        <div class="lcard-badges">
+          ${l.furnished?`<span class="badge ${l.furnished==='Furnished'?'b-teal':'b-gray'}">${l.furnished}</span>`:''}
+          ${l.lease?`<span class="badge ${leaseBadge(l.lease)}">${l.lease}</span>`:''}
+          ${l.pets?`<span class="badge ${petBadge(l.pets)}">${l.pets}</span>`:''}
+          ${l.dishwasher&&l.dishwasher!=='Not stated'?`<span class="badge ${l.dishwasher==='Yes'?'b-teal':'b-gray'}">Dishwasher: ${l.dishwasher}</span>`:''}
+          ${l.reqs&&l.reqs.length?l.reqs.map(r=>`<span class="badge b-gray">${r}</span>`).join(''):''}
+        </div>
+      </div>
+      ${(l.utils||l.laundry)?`<div class="lcard-body"><div class="lcard-grid">
+        ${l.utils?`<div class="lcard-field"><div class="lf-label">Utilities</div><div class="lf-val">${l.utils}</div></div>`:''}
+        ${l.laundry?`<div class="lcard-field"><div class="lf-label">Laundry</div><div class="lf-val">${l.laundry}</div></div>`:''}
+      </div></div>`:''}
+      ${(l.perks||l.cons)?`<div class="lcard-section perks">
+        ${l.perks?`<div class="perk-col good"><div class="pk-head">Perks</div><div class="pk-body">${l.perks}</div></div>`:''}
+        ${l.cons?`<div class="perk-col bad"><div class="pk-head">Downsides</div><div class="pk-body">${l.cons}</div></div>`:''}
+      </div>`:''}
+      ${(l.oname||l.ophone||l.oemail)?`<div class="lcard-section contact"><div class="contact-label">Owner / agent</div><div class="contact-vals">${[l.oname,l.ophone,l.oemail].filter(Boolean).map(v=>`<span class="contact-chip">${v}</span>`).join('')}</div></div>`:''}
+      ${l.notes?`<div class="lcard-section notes-sec">${l.notes}</div>`:''}
+      <div class="lcard-actions">
+        <button class="btn btn-ghost btn-sm" onclick="editListing(${l.id})">Edit</button>
+        <button class="btn btn-sm btn-danger" onclick="removeListing(${l.id})">Remove</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function addTodo(){
+  const text=document.getElementById('new-todo').value.trim();
+  if(!text)return;
+  state.todos.push({id:Date.now(),text,cat:document.getElementById('new-cat').value,done:false});
+  document.getElementById('new-todo').value='';
+  renderTodos();save('t-status');
+}
+
+function toggleTodo(id){
+  const t=state.todos.find(t=>t.id===id);
+  if(t){t.done=!t.done;renderTodos();save('t-status');}
+}
+
+function renderTodos(){
+  const cats=[...new Set(state.todos.map(t=>t.cat))];
+  const done=state.todos.filter(t=>t.done).length;
+  let html=`<div class="todo-counter">${done} of ${state.todos.length} complete</div>`;
+  cats.forEach(cat=>{
+    const items=state.todos.filter(t=>t.cat===cat);
+    html+=`<div class="todo-cat-block"><div class="todo-cat-label">${cat}</div>`;
+    items.forEach(t=>{html+=`<div class="todo-item"><input type="checkbox" ${t.done?'checked':''} onchange="toggleTodo(${t.id})"/><div class="todo-text ${t.done?'done':''}">${t.text}</div></div>`;});
+    html+='</div>';
+  });
+  document.getElementById('todo-list').innerHTML=html;
+}
+
+init();
+</script>
+</body>
+</html>
