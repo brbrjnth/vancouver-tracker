@@ -376,10 +376,11 @@ function editListing(id){
   document.getElementById('form-title').textContent='Edit listing';
   document.getElementById('save-btn').textContent='Update listing';
   document.getElementById('form-cancel-btn').style.display='inline-block';
-  const map={city:'h-city',hood:'h-hood',htype:'h-type',size:'h-size',rent:'h-rent',date:'h-date',entered:'h-entered',platform:'h-platform',pets:'h-pets',furnished:'h-furnished',lease:'h-lease',utils:'h-utils',laundry:'h-laundry',dishwasher:'h-dishwasher',perks:'h-perks',cons:'h-cons',oname:'h-oname',ophone:'h-ophone',oemail:'h-oemail',notes:'h-notes'};
+  const map={city:'h-city',hood:'h-hood',htype:'h-type',size:'h-size',rent:'h-rent',date:'h-date',entered:'h-entered',movein:'h-movein',platform:'h-platform',pets:'h-pets',furnished:'h-furnished',lease:'h-lease',utils:'h-utils',laundry:'h-laundry',dishwasher:'h-dishwasher',perks:'h-perks',cons:'h-cons',oname:'h-oname',ophone:'h-ophone',oemail:'h-oemail',notes:'h-notes'};
   Object.entries(map).forEach(([k,fid])=>{const el=document.getElementById(fid);if(el&&l[k]!==undefined)el.value=l[k];});
   if(l.reqs){const sel=document.getElementById('h-reqs');Array.from(sel.options).forEach(o=>o.selected=l.reqs.includes(o.value));}
-  document.getElementById('form-wrap').scrollIntoView({behavior:'smooth',block:'start'});
+  switchTab('housing');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function cancelEdit(){clearForm();}
@@ -397,6 +398,7 @@ function saveListing(){
     rent:document.getElementById('h-rent').value,
     date:document.getElementById('h-date').value,
     entered:document.getElementById('h-entered').value||new Date().toISOString().slice(0,10),
+    movein:document.getElementById('h-movein').value,
     furnished:document.getElementById('h-furnished').value,
     lease:document.getElementById('h-lease').value,
     utils:document.getElementById('h-utils').value,
