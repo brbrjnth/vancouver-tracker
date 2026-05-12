@@ -22,22 +22,17 @@
   --shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
 }
 body{font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;color:var(--text);background:var(--bg);min-height:100vh;padding:1.5rem}
-.container{max-width:900px;margin:0 auto}
-h1{font-size:20px;font-weight:600;color:var(--text);margin-bottom:.25rem}
+.container{max-width:960px;margin:0 auto}
+h1{font-size:20px;font-weight:600;margin-bottom:.25rem}
 .subtitle{font-size:13px;color:var(--text3);margin-bottom:1.5rem;font-family:'DM Mono',monospace}
 
 /* TABS */
 .tabs{display:flex;gap:6px;margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);flex-wrap:wrap}
 .tab{padding:8px 18px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap}
 .tab.active{background:var(--text);color:#fff;border-color:var(--text);font-weight:500}
-.tab-badge{display:inline-block;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:5px;font-family:'DM Mono',monospace;background:var(--bg3);color:var(--text3)}
+.tab-badge{display:inline-block;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:4px;font-family:'DM Mono',monospace;background:var(--bg3);color:var(--text3)}
 .tab.active .tab-badge{background:rgba(255,255,255,.25);color:#fff}
 .panel{display:none}.panel.active{display:block}
-/* FAVOURITE */
-.btn-fav{border:none;background:none;cursor:pointer;font-size:18px;padding:2px 4px;line-height:1;box-shadow:none;transition:transform .15s}
-.btn-fav:hover{transform:scale(1.2)}
-.fav-star{color:#D4D4CF}
-.fav-star.active{color:#F5A623}
 
 /* FORM */
 .form-wrap{border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:1.5rem;box-shadow:var(--shadow)}
@@ -70,18 +65,25 @@ select[multiple]{height:76px}
 .btn-danger:hover{background:var(--red-bg)}
 .btn-archive{color:var(--amber-text);border-color:#EDD9B0;box-shadow:none}
 .btn-archive:hover{background:var(--amber-bg)}
-.btn-unarchive{color:var(--green-text);border-color:#C8DFB0;box-shadow:none}
-.btn-unarchive:hover{background:var(--green-bg)}
+.btn-restore{color:var(--green-text);border-color:#C8DFB0;box-shadow:none}
+.btn-restore:hover{background:var(--green-bg)}
 .status{font-size:12px;color:var(--text3);font-family:'DM Mono',monospace}
+
+/* FAVOURITE */
+.btn-fav{background:none;border:none;cursor:pointer;font-size:18px;padding:2px 4px;line-height:1;box-shadow:none;color:#D4D4CF;transition:transform .15s,color .15s}
+.btn-fav:hover{transform:scale(1.2)}
+.btn-fav.active{color:#F5A623}
 
 /* FILTER BAR */
 .filter-bar{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:.875rem 1rem;margin-bottom:1rem;box-shadow:var(--shadow)}
 .filter-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:8px;align-items:end}
 .filter-field label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:3px}
 .filter-field select,.filter-field input{font-size:12px;padding:6px 9px;background:var(--bg)}
-.sort-row{display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.sort-row{display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);flex-wrap:wrap}
 .sort-row label{font-size:11px;color:var(--text3);font-weight:500;white-space:nowrap}
 .sort-row select{font-size:12px;padding:5px 9px;width:auto;background:var(--bg)}
+.fav-filter{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text2);cursor:pointer;white-space:nowrap}
+.fav-filter input{width:13px;height:13px;margin:0;cursor:pointer}
 .results-count{font-size:12px;color:var(--text3);font-family:'DM Mono',monospace;margin-left:auto}
 
 /* LISTING CARDS */
@@ -89,16 +91,17 @@ select[multiple]{height:76px}
 .listings-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3)}
 .lcard{border:1px solid var(--border);border-radius:var(--radius-xl);margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow);transition:border-color .2s,box-shadow .2s}
 .lcard:hover{border-color:var(--border2);box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.lcard.archived{opacity:.65;border-style:dashed}
-.lcard.favourited{border-color:#F5A623;box-shadow:0 1px 6px rgba(245,166,35,.2)}
+.lcard.is-fav{border-color:#F5A623;box-shadow:0 1px 6px rgba(245,166,35,.18)}
+.lcard.is-archived{opacity:.65;border-style:dashed}
 .lcard-top{padding:1rem 1.25rem;background:#fff;border-bottom:1px solid var(--border)}
-.lcard-meta{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.lcard-loc{font-size:15px;font-weight:600;color:var(--text);line-height:1.3}
-.lcard-sub{font-size:11px;color:var(--text3);margin-top:3px;font-family:'DM Mono',monospace;letter-spacing:.01em}
-.lcard-price{font-size:19px;font-weight:600;color:var(--text);white-space:nowrap;line-height:1}
+.lcard-meta{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.lcard-loc{font-size:15px;font-weight:600;line-height:1.3}
+.lcard-sub{font-size:11px;color:var(--text3);margin-top:3px;font-family:'DM Mono',monospace}
+.lcard-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.lcard-price{font-size:19px;font-weight:600;white-space:nowrap;line-height:1}
 .lcard-price-unit{font-size:11px;font-weight:400;color:var(--text2)}
 .lcard-badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
-.badge{display:inline-flex;align-items:center;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500;font-family:'DM Mono',monospace;letter-spacing:.02em;border:1px solid transparent}
+.badge{display:inline-flex;align-items:center;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500;font-family:'DM Mono',monospace;border:1px solid transparent}
 .b-teal{background:var(--teal-bg);color:var(--teal-text);border-color:#C0E8D8}
 .b-gray{background:var(--bg2);color:var(--text2);border-color:var(--border)}
 .b-purple{background:var(--purple-bg);color:var(--purple-text);border-color:#D5D3F8}
@@ -106,15 +109,15 @@ select[multiple]{height:76px}
 .b-blue{background:var(--blue-bg);color:var(--blue-text);border-color:#C0D8EF}
 .b-green{background:var(--green-bg);color:var(--green-text);border-color:#C8DFB0}
 .b-red{background:var(--red-bg);color:var(--red-text);border-color:#DFB8B8}
-
+.b-orange{background:#FEF0E7;color:#7A3010;border-color:#F0C9A8}
 .lcard-body{background:var(--bg);border-bottom:1px solid var(--border);padding:.875rem 1.25rem}
-.lcard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+.lcard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
 .lcard-field{padding:.5rem .75rem;background:#fff;border:1px solid var(--border);border-radius:var(--radius)}
 .lf-label{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text3);margin-bottom:2px}
 .lf-val{font-size:13px;color:var(--text);font-weight:500}
 .lcard-section{border-bottom:1px solid var(--border);padding:.875rem 1.25rem}
 .lcard-section:last-of-type{border-bottom:none}
-.lcard-section.perks{display:grid;grid-template-columns:1fr 1fr;gap:1rem;background:#fff}
+.lcard-section.perks-sec{display:grid;grid-template-columns:1fr 1fr;gap:1rem;background:#fff}
 .perk-col{padding:.625rem .875rem;border-radius:var(--radius);border:1px solid var(--border)}
 .perk-col.good{background:var(--green-bg);border-color:#C8DFB0}
 .perk-col.bad{background:var(--red-bg);border-color:#DFB8B8}
@@ -122,13 +125,14 @@ select[multiple]{height:76px}
 .perk-col.good .pk-head{color:var(--green-text)}
 .perk-col.bad .pk-head{color:var(--red-text)}
 .pk-body{font-size:13px;color:var(--text2);line-height:1.5}
-.lcard-section.contact{background:var(--bg)}
+.lcard-section.contact-sec{background:var(--bg)}
 .contact-label{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
 .contact-vals{display:flex;flex-wrap:wrap;gap:6px}
 .contact-chip{font-size:12px;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:4px 10px;font-family:'DM Mono',monospace}
 .lcard-section.notes-sec{background:var(--bg);font-size:13px;color:var(--text2);line-height:1.6}
-.lcard-actions{padding:.625rem 1rem;background:var(--bg2);border-top:1px solid var(--border);display:flex;gap:6px;justify-content:flex-end}
+.lcard-actions{padding:.625rem 1rem;background:var(--bg2);border-top:1px solid var(--border);display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap}
 .empty{text-align:center;padding:3rem 1rem;color:var(--text3);font-size:13px;background:#fff;border:1px dashed var(--border);border-radius:var(--radius-lg)}
+.archive-notice{font-size:12px;color:var(--amber-text);background:var(--amber-bg);border:1px solid #EDD9B0;border-radius:var(--radius);padding:5px 12px;margin-bottom:.875rem;display:inline-block;font-family:'DM Mono',monospace}
 
 /* TODO */
 .todo-cat-block{margin-bottom:1.25rem;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
@@ -148,7 +152,8 @@ input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;cursor:
   .grid4,.grid5{grid-template-columns:1fr 1fr}
   .grid3{grid-template-columns:1fr 1fr}
   .filter-row{grid-template-columns:1fr 1fr}
-  .lcard-section.perks{grid-template-columns:1fr}
+  .lcard-section.perks-sec{grid-template-columns:1fr}
+  .tabs{gap:4px}.tab{padding:7px 12px;font-size:12px}
 }
 </style>
 </head>
@@ -158,18 +163,17 @@ input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;cursor:
   <p class="subtitle">Housing listings + to-do list</p>
 
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('housing')">Add listing</button>
+    <button class="tab active" onclick="switchTab('add')">Add listing</button>
     <button class="tab" onclick="switchTab('listings')">Listings <span class="tab-badge" id="badge-active">0</span></button>
     <button class="tab" onclick="switchTab('archived')">Archived <span class="tab-badge" id="badge-archived">0</span></button>
     <button class="tab" onclick="switchTab('todo')">To-do list</button>
   </div>
 
-  <!-- HOUSING PANEL -->
-  <div id="housing" class="panel active">
-    <div class="form-wrap" id="form-wrap">
+  <!-- ADD / EDIT PANEL -->
+  <div id="add" class="panel active">
+    <div class="form-wrap">
       <div class="form-header">
         <span class="form-header-title" id="form-title">New listing</span>
-        <button class="btn btn-ghost btn-sm" id="form-cancel-btn" style="display:none" onclick="cancelEdit()">Cancel</button>
       </div>
       <div class="form-body">
         <input type="hidden" id="edit-id"/>
@@ -178,8 +182,8 @@ input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;cursor:
           <div class="grid4">
             <div class="field"><label>City</label><select id="h-city"><option value="">Select...</option><option>Vancouver</option><option>East Vancouver</option><option>North Vancouver</option><option>Burnaby</option><option>New Westminster</option><option>Other</option></select></div>
             <div class="field"><label>Neighbourhood</label><input id="h-hood" placeholder="e.g. Mount Pleasant"/></div>
-            <div class="field"><label>Housing type</label><select id="h-type"><option value="">Select...</option><option>Apartment</option><option>Condo</option><option>Basement suite</option><option>Laneway house</option><option>Garden suite</option><option>Coach house</option><option>House (full)</option><option>Room in house</option><option>Studio</option></select></div>
-            <div class="field"><label>Size</label><select id="h-size"><option value="">Select...</option><option>Studio</option><option>1 bed</option><option>2 bed</option><option>3 bed</option><option>Room in shared</option></select></div>
+            <div class="field"><label>Housing type</label><select id="h-type"><option value="">Select...</option><option>Apartment</option><option>Condo</option><option>Basement suite</option><option>Laneway house</option><option>Garden suite</option><option>Coach house</option><option>House (full)</option><option>Room in house</option><option>Studio</option><option>Not stated</option></select></div>
+            <div class="field"><label>Size</label><select id="h-size"><option value="">Select...</option><option>Studio</option><option>1 bed</option><option>2 bed</option><option>3 bed</option><option>Room in shared</option><option>Not stated</option></select></div>
           </div>
         </div>
         <div class="field-group">
@@ -188,18 +192,19 @@ input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;cursor:
             <div class="field"><label>Monthly rent (CAD $)</label><input id="h-rent" type="number" placeholder="1800"/></div>
             <div class="field"><label>Date posted</label><input id="h-date" type="date"/></div>
             <div class="field"><label>Date entered</label><input id="h-entered" type="date"/></div>
-            <div class="field"><label>Platform</label><select id="h-platform"><option value="">Select...</option><option>Craigslist</option><option>Facebook Marketplace</option><option>Padmapper</option><option>PadSplit</option><option>Kijiji</option><option>Other</option></select></div>
+            <div class="field"><label>Move-in date</label><input id="h-movein" type="date"/></div>
           </div>
           <div class="grid5" style="margin-top:10px">
+            <div class="field"><label>Platform</label><select id="h-platform"><option value="">Select...</option><option>Craigslist</option><option>Facebook Marketplace</option><option>Padmapper</option><option>PadSplit</option><option>Kijiji</option><option>Other</option></select></div>
             <div class="field"><label>Pets allowed</label><select id="h-pets"><option value="">Select...</option><option>Yes — all pets</option><option>Yes — cats only</option><option>Yes — small dogs</option><option>Yes — negotiable</option><option>No pets</option><option>Not stated</option></select></div>
-            <div class="field"><label>Furnished</label><select id="h-furnished"><option value="">Select...</option><option>Furnished</option><option>Unfurnished</option><option>Partially furnished</option></select></div>
-            <div class="field"><label>Lease type</label><select id="h-lease"><option value="">Select...</option><option>Short term (1–2 months)</option><option>3 months</option><option>6 months</option><option>12 months</option><option>Month to month</option><option>Fixed term (other)</option></select></div>
+            <div class="field"><label>Furnished</label><select id="h-furnished"><option value="">Select...</option><option>Furnished</option><option>Unfurnished</option><option>Partially furnished</option><option>Not stated</option></select></div>
+            <div class="field"><label>Lease type</label><select id="h-lease"><option value="">Select...</option><option>Short term (1–2 months)</option><option>3 months</option><option>6 months</option><option>12 months</option><option>Month to month</option><option>Fixed term (other)</option><option>Not stated</option></select></div>
             <div class="field"><label>Utilities</label><select id="h-utils"><option value="">Select...</option><option>All included</option><option>Hydro extra</option><option>None included</option><option>Partial</option><option>Not stated</option></select></div>
-            <div class="field"><label>Laundry</label><select id="h-laundry"><option value="">Select...</option><option>In-suite</option><option>Washer only</option><option>In-building shared</option><option>Laundromat nearby</option><option>None</option></select></div>
           </div>
-          <div class="grid2" style="margin-top:10px">
+          <div class="grid4" style="margin-top:10px">
+            <div class="field"><label>Laundry</label><select id="h-laundry"><option value="">Select...</option><option>In-suite</option><option>Washer only</option><option>In-building shared</option><option>Laundromat nearby</option><option>None</option><option>Not stated</option></select></div>
             <div class="field"><label>Dishwasher</label><select id="h-dishwasher"><option value="">Select...</option><option>Yes</option><option>No</option><option>Not stated</option></select></div>
-            <div class="field"><label>Requirements (hold Ctrl/Cmd to select multiple)</label><select id="h-reqs" multiple><option>References</option><option>Credit check</option><option>First + last month</option><option>Employment proof</option><option>Tenant insurance</option><option>No pets</option><option>No smoking</option></select></div>
+            <div class="field"><label>Requirements</label><select id="h-reqs" multiple><option>References</option><option>Credit check</option><option>First + last month</option><option>Employment proof</option><option>Tenant insurance</option><option>No pets</option><option>No smoking</option></select></div>
           </div>
           <div class="grid2" style="margin-top:10px">
             <div class="field"><label>Perks</label><textarea id="h-perks" placeholder="e.g. natural light, quiet street, close to transit..."></textarea></div>
@@ -219,12 +224,12 @@ input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;cursor:
           <div class="field"><textarea id="h-notes" placeholder="Gut feeling, red flags, follow-up needed..."></textarea></div>
         </div>
         <div class="form-actions">
-          <button class="btn btn-primary" onclick="saveListing()" id="save-btn">Save listing</button>
+          <button class="btn btn-primary" id="save-btn" onclick="saveListing()">Save listing</button>
+          <button class="btn btn-ghost" id="cancel-btn" onclick="cancelEdit()">Cancel</button>
           <span class="status" id="h-status"></span>
         </div>
       </div>
     </div>
-
   </div>
 
   <!-- LISTINGS PANEL -->
@@ -240,17 +245,15 @@ input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;cursor:
       <div class="sort-row">
         <label>Sort by</label>
         <select id="f-sort" onchange="renderListings()">
-          <option value="newest">Date entered (newest first)</option>
-          <option value="oldest">Date entered (oldest first)</option>
+          <option value="newest">Date entered (newest)</option>
+          <option value="oldest">Date entered (oldest)</option>
           <option value="fav">Favourites first</option>
           <option value="rent-asc">Rent (low to high)</option>
           <option value="rent-desc">Rent (high to low)</option>
-          <option value="movein">Move-in date (soonest)</option>
+          <option value="movein">Move-in (soonest)</option>
           <option value="listed-new">Date posted (newest)</option>
         </select>
-        <label style="margin-left:12px;display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text3);cursor:pointer">
-          <input type="checkbox" id="f-fav" onchange="renderListings()" style="width:13px;height:13px;margin:0"/> ⭐ Favourites only
-        </label>
+        <label class="fav-filter"><input type="checkbox" id="f-fav-only" onchange="renderListings()"/> ⭐ Favourites only</label>
         <span class="results-count" id="results-count"></span>
       </div>
     </div>
@@ -260,7 +263,7 @@ input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;cursor:
 
   <!-- ARCHIVED PANEL -->
   <div id="archived" class="panel">
-    <p style="font-size:12px;color:var(--amber-text);background:var(--amber-bg);border:1px solid #EDD9B0;border-radius:var(--radius);padding:6px 12px;margin-bottom:.875rem;display:inline-block;font-family:'DM Mono',monospace">Archived listings are no longer active but kept for reference</p>
+    <div class="archive-notice">Archived listings are no longer active — kept for reference only</div>
     <div class="listings-header"><span class="listings-label" id="h-count-archived"></span></div>
     <div id="archived-list"></div>
   </div>
@@ -281,296 +284,395 @@ input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;cursor:
 </div>
 
 <script>
-const API='https://api.anthropic.com/v1/messages';
-const MODEL='claude-sonnet-4-20250514';
-const STORAGE_KEY='bt-tracker-v3';
-let state={listings:[],todos:[]};
-let saving=false;
+// ─── CONFIG ───────────────────────────────────────────────
+const API   = 'https://api.anthropic.com/v1/messages';
+const MODEL = 'claude-sonnet-4-20250514';
+const KEY   = 'bt-tracker-v3';
 
-const defaultTodos=[
-  {id:1,text:'Get a rental reference from Melbourne host or accommodation provider',cat:'Melbourne',done:false},
-  {id:2,text:'Get a rental reference from Gold Coast host or accommodation provider',cat:'Gold Coast',done:false},
-  {id:3,text:'Withdraw money / sort TFSA',cat:'Canada / finances',done:false},
-  {id:4,text:'Get employment letter or proof of work history',cat:'Documents',done:false},
-  {id:5,text:'Complete Canadian taxes (call CRA when back in Canada)',cat:'Canada / finances',done:false},
-  {id:6,text:'Sort storage unit — dispose of excess, cancel unit ASAP',cat:'General',done:false},
-  {id:7,text:'Research Vancouver neighbourhoods and set a budget',cat:'Housing',done:false},
-  {id:8,text:'Build Trusted Housesitters / MadPaws profile',cat:'General',done:false},
-  {id:9,text:'Start saving listings to housing tracker',cat:'Housing',done:false},
-  {id:10,text:'Confirm Thredbo start date and accommodation',cat:'General',done:false},
+// ─── STATE ────────────────────────────────────────────────
+let state = { listings: [], todos: [] };
+let saving = false;
+
+const DEFAULT_TODOS = [
+  {id:1, text:'Get a rental reference from Melbourne host or accommodation provider', cat:'Melbourne', done:false},
+  {id:2, text:'Get a rental reference from Gold Coast host or accommodation provider', cat:'Gold Coast', done:false},
+  {id:3, text:'Withdraw money / sort TFSA', cat:'Canada / finances', done:false},
+  {id:4, text:'Get employment letter or proof of work history', cat:'Documents', done:false},
+  {id:5, text:'Complete Canadian taxes (call CRA when back in Canada)', cat:'Canada / finances', done:false},
+  {id:6, text:'Sort storage unit — dispose of excess, cancel unit ASAP', cat:'General', done:false},
+  {id:7, text:'Research Vancouver neighbourhoods and set a budget', cat:'Housing', done:false},
+  {id:8, text:'Build Trusted Housesitters / MadPaws profile', cat:'General', done:false},
+  {id:9, text:'Start saving listings to housing tracker', cat:'Housing', done:false},
+  {id:10,text:'Confirm Thredbo start date and accommodation', cat:'General', done:false},
 ];
 
-async function cloudGet(){
-  try{
-    const res=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:MODEL,max_tokens:1000,system:'You are a key-value store. When asked to GET a key, return ONLY the raw JSON value stored for that key, or the literal text NULL if not found. No explanation, no markdown.',messages:[{role:'user',content:`GET ${STORAGE_KEY}`}]})});
-    const d=await res.json();
-    const text=d.content?.find(b=>b.type==='text')?.text?.trim();
-    if(text&&text!=='NULL')return JSON.parse(text);
-  }catch(e){}
+// ─── CLOUD SYNC ───────────────────────────────────────────
+async function cloudGet() {
+  try {
+    const res = await fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: MODEL, max_tokens: 2000,
+        system: 'You are a key-value store. When asked to GET a key, return ONLY the raw JSON value for that key, or the literal text NULL if not found. No explanation, no markdown.',
+        messages: [{ role: 'user', content: `GET ${KEY}` }]
+      })
+    });
+    const d = await res.json();
+    const text = d.content?.find(b => b.type === 'text')?.text?.trim();
+    if (text && text !== 'NULL') return JSON.parse(text);
+  } catch(e) {}
   return null;
 }
 
-async function cloudSet(data){
-  try{
-    await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:MODEL,max_tokens:100,system:'You are a key-value store. When asked to SET a key to a value, reply only with the word SAVED.',messages:[{role:'user',content:`SET ${STORAGE_KEY} = ${JSON.stringify(data)}`}]})});
-  }catch(e){}
+async function cloudSet(data) {
+  try {
+    await fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: MODEL, max_tokens: 100,
+        system: 'You are a key-value store. When asked to SET a key, reply only with the word SAVED.',
+        messages: [{ role: 'user', content: `SET ${KEY} = ${JSON.stringify(data)}` }]
+      })
+    });
+  } catch(e) {}
 }
 
-async function save(statusId){
-  if(saving)return;
-  saving=true;
-  const el=statusId?document.getElementById(statusId):null;
-  if(el)el.textContent='Saving...';
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
-  await cloudSet(state);
-  if(el){el.textContent='Saved ✓';setTimeout(()=>{el.textContent='';},2500);}
-  saving=false;
+async function save(statusId) {
+  if (saving) return;
+  saving = true;
+  const el = statusId ? document.getElementById(statusId) : null;
+  if (el) el.textContent = 'Saving...';
+  localStorage.setItem(KEY, JSON.stringify(state));
+  try { await cloudSet(state); } catch(e) {}
+  saving = false; // always reset even if cloudSet fails
+  if (el) { el.textContent = 'Saved ✓'; setTimeout(() => { el.textContent = ''; }, 2500); }
 }
 
-async function init(){
-  const local=localStorage.getItem(STORAGE_KEY);
-  if(local){try{state=JSON.parse(local);}catch(e){}}
-  if(!state.todos||!state.todos.length)state.todos=defaultTodos;
-  updateBadges();renderListings();renderArchived();renderTodos();
-  const cloud=await cloudGet();
-  if(cloud){
-    state=cloud;
-    if(!state.todos||!state.todos.length)state.todos=defaultTodos;
-    localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
-    updateBadges();renderListings();renderArchived();renderTodos();
+// ─── INIT ─────────────────────────────────────────────────
+async function init() {
+  const local = localStorage.getItem(KEY);
+  if (local) { try { state = JSON.parse(local); } catch(e) {} }
+  if (!state.todos || !state.todos.length) state.todos = DEFAULT_TODOS;
+  refreshAll();
+  const cloud = await cloudGet();
+  if (cloud) {
+    state = cloud;
+    if (!state.todos || !state.todos.length) state.todos = DEFAULT_TODOS;
+    localStorage.setItem(KEY, JSON.stringify(state));
+    refreshAll();
   }
 }
 
-function updateBadges(){
-  const active=(state.listings||[]).filter(l=>!l.archived).length;
-  const arch=(state.listings||[]).filter(l=>l.archived).length;
-  document.getElementById('badge-active').textContent=active;
-  document.getElementById('badge-archived').textContent=arch;
+function refreshAll() {
+  updateBadges();
+  renderListings();
+  renderArchived();
+  renderTodos();
 }
 
-function switchTab(t){
-  const tabs=['housing','listings','archived','todo'];
-  document.querySelectorAll('.tab').forEach((el,i)=>el.classList.toggle('active',tabs[i]===t));
-  document.querySelectorAll('.panel').forEach(el=>el.classList.remove('active'));
+function updateBadges() {
+  const active = (state.listings || []).filter(l => !l.archived).length;
+  const arch   = (state.listings || []).filter(l =>  l.archived).length;
+  document.getElementById('badge-active').textContent   = active;
+  document.getElementById('badge-archived').textContent = arch;
+}
+
+// ─── TABS ─────────────────────────────────────────────────
+// Tab order must match DOM order of .tab buttons and .panel divs
+const TAB_IDS = ['add', 'listings', 'archived', 'todo'];
+
+function switchTab(t) {
+  document.querySelectorAll('.tab').forEach((el, i) =>
+    el.classList.toggle('active', TAB_IDS[i] === t)
+  );
+  document.querySelectorAll('.panel').forEach(el => el.classList.remove('active'));
   document.getElementById(t).classList.add('active');
 }
 
-const TEXT_FIELDS=['h-hood','h-rent','h-date','h-entered','h-oname','h-ophone','h-oemail','h-perks','h-cons','h-notes'];
-const SELECT_FIELDS=['h-city','h-type','h-size','h-platform','h-pets','h-furnished','h-lease','h-utils','h-laundry','h-dishwasher'];
+// ─── FORM FIELDS ──────────────────────────────────────────
+const TEXT_FIELDS   = ['h-hood','h-rent','h-date','h-entered','h-movein','h-oname','h-ophone','h-oemail','h-perks','h-cons','h-notes'];
+const SELECT_FIELDS = ['h-city','h-type','h-size','h-platform','h-pets','h-furnished','h-lease','h-utils','h-laundry','h-dishwasher'];
+const FIELD_MAP = {
+  city:'h-city', hood:'h-hood', htype:'h-type', size:'h-size',
+  rent:'h-rent', date:'h-date', entered:'h-entered', movein:'h-movein',
+  platform:'h-platform', pets:'h-pets', furnished:'h-furnished',
+  lease:'h-lease', utils:'h-utils', laundry:'h-laundry',
+  dishwasher:'h-dishwasher', perks:'h-perks', cons:'h-cons',
+  oname:'h-oname', ophone:'h-ophone', oemail:'h-oemail', notes:'h-notes'
+};
 
-function clearForm(){
-  TEXT_FIELDS.forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  SELECT_FIELDS.forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  document.getElementById('h-reqs').selectedIndex=-1;
-  document.getElementById('edit-id').value='';
-  document.getElementById('form-title').textContent='New listing';
-  document.getElementById('save-btn').textContent='Save listing';
-  document.getElementById('form-cancel-btn').style.display='none';
+function clearForm() {
+  TEXT_FIELDS.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  SELECT_FIELDS.forEach(id => { const el = document.getElementById(id); if (el) el.selectedIndex = 0; });
+  document.getElementById('h-reqs').selectedIndex = -1;
+  document.getElementById('edit-id').value = '';
+  document.getElementById('form-title').textContent = 'New listing';
+  document.getElementById('save-btn').textContent = 'Save listing';
+  document.getElementById('h-status').textContent = '';
 }
 
-function editListing(id){
-  const l=state.listings.find(x=>x.id===id);
-  if(!l)return;
+function editListing(id) {
+  // id comes in as a number from listing data
+  const l = state.listings.find(x => x.id === id);
+  if (!l) return;
   clearForm();
-  document.getElementById('edit-id').value=id;
-  document.getElementById('form-title').textContent='Edit listing';
-  document.getElementById('save-btn').textContent='Update listing';
-  document.getElementById('form-cancel-btn').style.display='inline-block';
-  const map={city:'h-city',hood:'h-hood',htype:'h-type',size:'h-size',rent:'h-rent',date:'h-date',entered:'h-entered',movein:'h-movein',platform:'h-platform',pets:'h-pets',furnished:'h-furnished',lease:'h-lease',utils:'h-utils',laundry:'h-laundry',dishwasher:'h-dishwasher',perks:'h-perks',cons:'h-cons',oname:'h-oname',ophone:'h-ophone',oemail:'h-oemail',notes:'h-notes'};
-  Object.entries(map).forEach(([k,fid])=>{const el=document.getElementById(fid);if(el&&l[k]!==undefined)el.value=l[k];});
-  if(l.reqs){const sel=document.getElementById('h-reqs');Array.from(sel.options).forEach(o=>o.selected=l.reqs.includes(o.value));}
-  switchTab('housing');
-  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('edit-id').value = String(id);
+  document.getElementById('form-title').textContent = 'Edit listing';
+  document.getElementById('save-btn').textContent = 'Update listing';
+  // Populate all fields
+  Object.entries(FIELD_MAP).forEach(([key, fieldId]) => {
+    const el = document.getElementById(fieldId);
+    if (el && l[key] !== undefined && l[key] !== null) el.value = l[key];
+  });
+  // Multi-select requirements
+  const reqs = document.getElementById('h-reqs');
+  Array.from(reqs.options).forEach(o => { o.selected = (l.reqs || []).includes(o.value); });
+  // Switch to form tab and scroll to top
+  switchTab('add');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function cancelEdit(){clearForm();}
+function cancelEdit() {
+  clearForm();
+  // If we were editing, go back to listings; otherwise stay on add
+  const editId = document.getElementById('edit-id').value;
+  if (editId) switchTab('listings');
+}
 
-function saveListing(){
-  const hood=document.getElementById('h-hood').value.trim();
-  if(!hood){document.getElementById('h-status').textContent='Add a neighbourhood first';return;}
-  const reqs=Array.from(document.getElementById('h-reqs').selectedOptions).map(o=>o.value);
-  const editId=document.getElementById('edit-id').value;
-  const data={
-    city:document.getElementById('h-city').value,
-    hood,htype:document.getElementById('h-type').value,
-    platform:document.getElementById('h-platform').value,
-    size:document.getElementById('h-size').value,
-    rent:document.getElementById('h-rent').value,
-    date:document.getElementById('h-date').value,
-    entered:document.getElementById('h-entered').value||new Date().toISOString().slice(0,10),
-    movein:document.getElementById('h-movein').value,
-    furnished:document.getElementById('h-furnished').value,
-    lease:document.getElementById('h-lease').value,
-    utils:document.getElementById('h-utils').value,
-    laundry:document.getElementById('h-laundry').value,
+function readForm() {
+  return {
+    city:      document.getElementById('h-city').value,
+    hood:      document.getElementById('h-hood').value.trim(),
+    htype:     document.getElementById('h-type').value,
+    size:      document.getElementById('h-size').value,
+    rent:      document.getElementById('h-rent').value,
+    date:      document.getElementById('h-date').value,
+    entered:   document.getElementById('h-entered').value || new Date().toISOString().slice(0, 10),
+    movein:    document.getElementById('h-movein').value,
+    platform:  document.getElementById('h-platform').value,
+    pets:      document.getElementById('h-pets').value,
+    furnished: document.getElementById('h-furnished').value,
+    lease:     document.getElementById('h-lease').value,
+    utils:     document.getElementById('h-utils').value,
+    laundry:   document.getElementById('h-laundry').value,
     dishwasher:document.getElementById('h-dishwasher').value,
-    pets:document.getElementById('h-pets').value,
-    reqs,
-    perks:document.getElementById('h-perks').value.trim(),
-    cons:document.getElementById('h-cons').value.trim(),
-    oname:document.getElementById('h-oname').value.trim(),
-    ophone:document.getElementById('h-ophone').value.trim(),
-    oemail:document.getElementById('h-oemail').value.trim(),
-    notes:document.getElementById('h-notes').value.trim()
+    reqs:      Array.from(document.getElementById('h-reqs').selectedOptions).map(o => o.value),
+    perks:     document.getElementById('h-perks').value.trim(),
+    cons:      document.getElementById('h-cons').value.trim(),
+    oname:     document.getElementById('h-oname').value.trim(),
+    ophone:    document.getElementById('h-ophone').value.trim(),
+    oemail:    document.getElementById('h-oemail').value.trim(),
+    notes:     document.getElementById('h-notes').value.trim(),
   };
-  if(editId){
-    const idx=state.listings.findIndex(x=>x.id==editId);
-    if(idx>-1)state.listings[idx]={...state.listings[idx],...data};
-  }else{
-    state.listings.unshift({id:Date.now(),...data});
+}
+
+function saveListing() {
+  const data = readForm();
+  if (!data.hood) {
+    document.getElementById('h-status').textContent = 'Neighbourhood is required';
+    return;
   }
-  clearForm();updateBadges();renderListings();renderArchived();save('h-status');
+  const editIdStr = document.getElementById('edit-id').value;
+  if (editIdStr) {
+    // EDIT — match by converting stored string back to number
+    const editId = Number(editIdStr);
+    const idx = state.listings.findIndex(x => x.id === editId);
+    if (idx > -1) {
+      // Preserve fields that aren't in the form (fav, archived)
+      state.listings[idx] = { ...state.listings[idx], ...data };
+    }
+  } else {
+    // NEW
+    state.listings.unshift({ id: Date.now(), fav: false, archived: false, ...data });
+  }
+  clearForm();
+  refreshAll();
+  save('h-status');
   switchTab('listings');
 }
 
-function removeListing(id){
-  if(!confirm('Permanently remove this listing?'))return;
-  state.listings=state.listings.filter(l=>l.id!==id);
-  updateBadges();renderListings();renderArchived();save('h-status');
+// ─── LISTING ACTIONS ──────────────────────────────────────
+function removeListing(id) {
+  if (!confirm('Permanently remove this listing?')) return;
+  state.listings = state.listings.filter(l => l.id !== id);
+  refreshAll();
+  save('h-status');
 }
 
-function archiveListing(id){
-  const l=state.listings.find(x=>x.id===id);
-  if(l){l.archived=true;updateBadges();renderListings();renderArchived();save('h-status');}
+function archiveListing(id) {
+  const l = state.listings.find(x => x.id === id);
+  if (l) { l.archived = true; refreshAll(); save('h-status'); }
 }
 
-function unarchiveListing(id){
-  const l=state.listings.find(x=>x.id===id);
-  if(l){l.archived=false;updateBadges();renderListings();renderArchived();save('h-status');}
+function unarchiveListing(id) {
+  const l = state.listings.find(x => x.id === id);
+  if (l) { l.archived = false; refreshAll(); save('h-status'); }
 }
 
-function toggleFav(id){
-  const l=state.listings.find(x=>x.id===id);
-  if(l){l.fav=!l.fav;renderListings();renderArchived();save('h-status');}
+function toggleFav(id) {
+  const l = state.listings.find(x => x.id === id);
+  if (l) { l.fav = !l.fav; refreshAll(); save('h-status'); }
 }
 
-function clearFilters(){
-  ['f-city','f-type','f-sort'].forEach(id=>document.getElementById(id).value=id==='f-sort'?'newest':'');
-  document.getElementById('f-pets').value='';
-  document.getElementById('f-rent').value='';
-  document.getElementById('f-fav').checked=false;
+// ─── FILTER + SORT ────────────────────────────────────────
+function clearFilters() {
+  document.getElementById('f-city').value    = '';
+  document.getElementById('f-type').value    = '';
+  document.getElementById('f-pets').value    = '';
+  document.getElementById('f-rent').value    = '';
+  document.getElementById('f-sort').value    = 'newest';
+  document.getElementById('f-fav-only').checked = false;
   renderListings();
 }
 
-function getFiltered(){
-  let list=(state.listings||[]).filter(l=>!l.archived);
-  const fc=document.getElementById('f-city').value;
-  const ft=document.getElementById('f-type').value;
-  const fp=document.getElementById('f-pets').value;
-  const fr=document.getElementById('f-rent').value;
-  const fs=document.getElementById('f-sort').value;
-  const ff=document.getElementById('f-fav').checked;
-  if(fc)list=list.filter(l=>l.city===fc);
-  if(ft)list=list.filter(l=>l.htype===ft);
-  if(fp==='yes')list=list.filter(l=>l.pets&&l.pets.startsWith('Yes'));
-  if(fp==='no')list=list.filter(l=>l.pets&&l.pets.includes('No'));
-  if(fr)list=list.filter(l=>l.rent&&Number(l.rent)<=Number(fr));
-  if(ff)list=list.filter(l=>l.fav);
-  list.sort((a,b)=>{
-    if(fs==='rent-asc')return(Number(a.rent)||0)-(Number(b.rent)||0);
-    if(fs==='rent-desc')return(Number(b.rent)||0)-(Number(a.rent)||0);
-    if(fs==='oldest')return(a.entered||'').localeCompare(b.entered||'');
-    if(fs==='fav')return(b.fav?1:0)-(a.fav?1:0);
-    if(fs==='movein')return(a.movein||'9999').localeCompare(b.movein||'9999');
-    if(fs==='listed-new')return(b.date||'').localeCompare(a.date||'');
-    return(b.entered||'').localeCompare(a.entered||'');
+function getFiltered() {
+  let list = (state.listings || []).filter(l => !l.archived);
+  const fc  = document.getElementById('f-city').value;
+  const ft  = document.getElementById('f-type').value;
+  const fp  = document.getElementById('f-pets').value;
+  const fr  = document.getElementById('f-rent').value;
+  const fs  = document.getElementById('f-sort').value;
+  const ff  = document.getElementById('f-fav-only').checked;
+  if (fc) list = list.filter(l => l.city  === fc);
+  if (ft) list = list.filter(l => l.htype === ft);
+  if (fp === 'yes') list = list.filter(l => l.pets && l.pets.startsWith('Yes'));
+  if (fp === 'no')  list = list.filter(l => l.pets && l.pets.includes('No'));
+  if (fr) list = list.filter(l => l.rent && Number(l.rent) <= Number(fr));
+  if (ff) list = list.filter(l => l.fav);
+  list.sort((a, b) => {
+    if (fs === 'rent-asc')   return (Number(a.rent) || 0) - (Number(b.rent) || 0);
+    if (fs === 'rent-desc')  return (Number(b.rent) || 0) - (Number(a.rent) || 0);
+    if (fs === 'oldest')     return (a.entered || '').localeCompare(b.entered || '');
+    if (fs === 'fav')        return (b.fav ? 1 : 0) - (a.fav ? 1 : 0);
+    if (fs === 'movein')     return (a.movein || '9999').localeCompare(b.movein || '9999');
+    if (fs === 'listed-new') return (b.date || '').localeCompare(a.date || '');
+    return (b.entered || '').localeCompare(a.entered || ''); // newest default
   });
   return list;
 }
 
-function leaseBadge(l){if(!l)return'b-gray';if(l.includes('Short'))return'b-purple';if(l.includes('12'))return'b-amber';if(l.includes('Month'))return'b-gray';return'b-blue';}
-function petBadge(p){if(!p)return'b-gray';if(p.includes('No'))return'b-red';if(p.includes('Yes'))return'b-green';return'b-gray';}
-function fmt(d){if(!d)return'';const[y,m,dd]=d.split('-');return`${dd}/${m}/${y}`;}
+// ─── RENDER HELPERS ───────────────────────────────────────
+function fmtCurrency(v) {
+  if (!v) return '';
+  return '$' + Number(v).toLocaleString('en-CA', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+}
+function fmt(d) {
+  if (!d) return '';
+  const [y, m, dd] = d.split('-');
+  return `${dd}/${m}/${y}`;
+}
+function leaseBadge(l) {
+  if (!l) return 'b-gray';
+  if (l.includes('Short'))  return 'b-purple';
+  if (l.includes('12'))     return 'b-amber';
+  if (l.includes('Month'))  return 'b-gray';
+  return 'b-blue';
+}
+function petBadge(p) {
+  if (!p) return 'b-gray';
+  if (p.includes('No'))  return 'b-red';
+  if (p.includes('Yes')) return 'b-green';
+  return 'b-gray';
+}
 
-function fmtCurrency(v){if(!v)return'';return'$'+Number(v).toLocaleString('en-CA',{minimumFractionDigits:0,maximumFractionDigits:0});}
-
-function cardHTML(l,isArchived=false){
-  return`<div class="lcard${isArchived?' archived':''}${l.fav?' favourited':''}">
+function cardHTML(l, isArchived) {
+  const classes = ['lcard', l.fav ? 'is-fav' : '', isArchived ? 'is-archived' : ''].filter(Boolean).join(' ');
+  return `<div class="${classes}">
     <div class="lcard-top">
       <div class="lcard-meta">
-        <div style="flex:1">
-          <div class="lcard-loc">${[l.city,l.hood].filter(Boolean).join(', ')}${l.htype?' — '+l.htype:''}${l.size?' ('+l.size+')':''}</div>
-          <div class="lcard-sub">${[l.platform,l.date?'listed '+fmt(l.date):'',l.entered?'entered '+fmt(l.entered):''].filter(Boolean).join(' · ')}</div>
+        <div style="flex:1;min-width:0">
+          <div class="lcard-loc">${[l.city, l.hood].filter(Boolean).join(', ')}${l.htype ? ' — ' + l.htype : ''}${l.size ? ' (' + l.size + ')' : ''}</div>
+          <div class="lcard-sub">${[l.platform, l.date ? 'listed ' + fmt(l.date) : '', l.entered ? 'entered ' + fmt(l.entered) : ''].filter(Boolean).join(' · ')}</div>
         </div>
-        <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
-          <button class="btn-fav" onclick="toggleFav(${l.id})" title="${l.fav?'Remove favourite':'Mark as favourite'}"><span class="fav-star${l.fav?' active':''}">★</span></button>
-          ${l.rent?`<div class="lcard-price">${fmtCurrency(l.rent)}<span class="lcard-price-unit"> /mo</span></div>`:''}
+        <div class="lcard-right">
+          <button class="btn-fav${l.fav ? ' active' : ''}" onclick="toggleFav(${l.id})" title="${l.fav ? 'Remove favourite' : 'Add to favourites'}">★</button>
+          ${l.rent ? `<div class="lcard-price">${fmtCurrency(l.rent)}<span class="lcard-price-unit"> /mo</span></div>` : ''}
         </div>
       </div>
       <div class="lcard-badges">
-        ${l.furnished?`<span class="badge ${l.furnished==='Furnished'?'b-teal':'b-gray'}">${l.furnished}</span>`:''}
-        ${l.lease?`<span class="badge ${leaseBadge(l.lease)}">${l.lease}</span>`:''}
-        ${l.pets?`<span class="badge ${petBadge(l.pets)}">${l.pets}</span>`:''}
-        ${l.movein?`<span class="badge b-orange">Move-in: ${fmt(l.movein)}</span>`:''}
-        ${l.dishwasher&&l.dishwasher!=='Not stated'?`<span class="badge ${l.dishwasher==='Yes'?'b-teal':'b-gray'}">Dishwasher: ${l.dishwasher}</span>`:''}
-        ${l.reqs&&l.reqs.length?l.reqs.map(r=>`<span class="badge b-gray">${r}</span>`).join(''):''}
+        ${l.furnished ? `<span class="badge ${l.furnished === 'Furnished' ? 'b-teal' : 'b-gray'}">${l.furnished}</span>` : ''}
+        ${l.lease     ? `<span class="badge ${leaseBadge(l.lease)}">${l.lease}</span>` : ''}
+        ${l.pets      ? `<span class="badge ${petBadge(l.pets)}">${l.pets}</span>` : ''}
+        ${l.movein    ? `<span class="badge b-orange">Move-in: ${fmt(l.movein)}</span>` : ''}
+        ${l.dishwasher && l.dishwasher !== 'Not stated' ? `<span class="badge ${l.dishwasher === 'Yes' ? 'b-teal' : 'b-gray'}">Dishwasher: ${l.dishwasher}</span>` : ''}
+        ${l.reqs && l.reqs.length ? l.reqs.map(r => `<span class="badge b-gray">${r}</span>`).join('') : ''}
       </div>
     </div>
-    ${(l.utils||l.laundry)?`<div class="lcard-body"><div class="lcard-grid">
-      ${l.utils?`<div class="lcard-field"><div class="lf-label">Utilities</div><div class="lf-val">${l.utils}</div></div>`:''}
-      ${l.laundry?`<div class="lcard-field"><div class="lf-label">Laundry</div><div class="lf-val">${l.laundry}</div></div>`:''}
-    </div></div>`:''}
-    ${(l.perks||l.cons)?`<div class="lcard-section perks">
-      ${l.perks?`<div class="perk-col good"><div class="pk-head">Perks</div><div class="pk-body">${l.perks}</div></div>`:''}
-      ${l.cons?`<div class="perk-col bad"><div class="pk-head">Downsides</div><div class="pk-body">${l.cons}</div></div>`:''}
-    </div>`:''}
-    ${(l.oname||l.ophone||l.oemail)?`<div class="lcard-section contact"><div class="contact-label">Owner / agent</div><div class="contact-vals">${[l.oname,l.ophone,l.oemail].filter(Boolean).map(v=>`<span class="contact-chip">${v}</span>`).join('')}</div></div>`:''}
-    ${l.notes?`<div class="lcard-section notes-sec">${l.notes}</div>`:''}
+    ${(l.utils || l.laundry) ? `<div class="lcard-body"><div class="lcard-grid">
+      ${l.utils   ? `<div class="lcard-field"><div class="lf-label">Utilities</div><div class="lf-val">${l.utils}</div></div>` : ''}
+      ${l.laundry ? `<div class="lcard-field"><div class="lf-label">Laundry</div><div class="lf-val">${l.laundry}</div></div>` : ''}
+    </div></div>` : ''}
+    ${(l.perks || l.cons) ? `<div class="lcard-section perks-sec">
+      ${l.perks ? `<div class="perk-col good"><div class="pk-head">Perks</div><div class="pk-body">${l.perks}</div></div>` : ''}
+      ${l.cons  ? `<div class="perk-col bad"><div class="pk-head">Downsides</div><div class="pk-body">${l.cons}</div></div>` : ''}
+    </div>` : ''}
+    ${(l.oname || l.ophone || l.oemail) ? `<div class="lcard-section contact-sec">
+      <div class="contact-label">Owner / agent</div>
+      <div class="contact-vals">${[l.oname, l.ophone, l.oemail].filter(Boolean).map(v => `<span class="contact-chip">${v}</span>`).join('')}</div>
+    </div>` : ''}
+    ${l.notes ? `<div class="lcard-section notes-sec">${l.notes}</div>` : ''}
     <div class="lcard-actions">
-      ${!isArchived?`<button class="btn btn-ghost btn-sm" onclick="editListing(${l.id})">Edit</button>`:''}
-      ${!isArchived?`<button class="btn btn-sm btn-archive" onclick="archiveListing(${l.id})">Archive</button>`:''}
-      ${isArchived?`<button class="btn btn-sm btn-unarchive" onclick="unarchiveListing(${l.id})">Restore</button>`:''}
+      ${!isArchived ? `<button class="btn btn-ghost btn-sm" onclick="editListing(${l.id})">Edit</button>` : ''}
+      ${!isArchived ? `<button class="btn btn-sm btn-archive" onclick="archiveListing(${l.id})">Archive</button>` : ''}
+      ${isArchived  ? `<button class="btn btn-sm btn-restore" onclick="unarchiveListing(${l.id})">Restore</button>` : ''}
       <button class="btn btn-sm btn-danger" onclick="removeListing(${l.id})">Remove</button>
     </div>
   </div>`;
 }
 
-function renderListings(){
-  const el=document.getElementById('listings-list');
-  const ct=document.getElementById('h-count');
-  const rc=document.getElementById('results-count');
-  const total=(state.listings||[]).filter(l=>!l.archived).length;
-  const list=getFiltered();
-  ct.textContent=total?total+' active listing'+(total!==1?'s':''):'';
-  rc.textContent=list.length!==total?`Showing ${list.length} of ${total}`:'';
-  if(!total){el.innerHTML='<div class="empty">No listings yet — go to Add listing to get started</div>';return;}
-  if(!list.length){el.innerHTML='<div class="empty">No listings match your current filters</div>';return;}
-  el.innerHTML=list.map(l=>cardHTML(l,false)).join('');
+// ─── RENDER LISTINGS ──────────────────────────────────────
+function renderListings() {
+  const el    = document.getElementById('listings-list');
+  const ct    = document.getElementById('h-count');
+  const rc    = document.getElementById('results-count');
+  const total = (state.listings || []).filter(l => !l.archived).length;
+  const list  = getFiltered();
+  ct.textContent = total ? total + ' active listing' + (total !== 1 ? 's' : '') : '';
+  rc.textContent = list.length !== total ? `Showing ${list.length} of ${total}` : '';
+  if (!total) { el.innerHTML = '<div class="empty">No listings yet — go to Add listing to get started</div>'; return; }
+  if (!list.length) { el.innerHTML = '<div class="empty">No listings match your current filters</div>'; return; }
+  el.innerHTML = list.map(l => cardHTML(l, false)).join('');
 }
 
-function renderArchived(){
-  const el=document.getElementById('archived-list');
-  const ct=document.getElementById('h-count-archived');
-  const list=(state.listings||[]).filter(l=>l.archived);
-  ct.textContent=list.length?list.length+' archived listing'+(list.length!==1?'s':''):'';
-  if(!list.length){el.innerHTML='<div class="empty">No archived listings yet</div>';return;}
-  el.innerHTML=list.map(l=>cardHTML(l,true)).join('');
+function renderArchived() {
+  const el   = document.getElementById('archived-list');
+  const ct   = document.getElementById('h-count-archived');
+  const list = (state.listings || []).filter(l => l.archived);
+  ct.textContent = list.length ? list.length + ' archived listing' + (list.length !== 1 ? 's' : '') : '';
+  if (!list.length) { el.innerHTML = '<div class="empty">No archived listings yet</div>'; return; }
+  el.innerHTML = list.map(l => cardHTML(l, true)).join('');
 }
 
-function addTodo(){
-  const text=document.getElementById('new-todo').value.trim();
-  if(!text)return;
-  state.todos.push({id:Date.now(),text,cat:document.getElementById('new-cat').value,done:false});
-  document.getElementById('new-todo').value='';
-  renderTodos();save('t-status');
+// ─── TODO ─────────────────────────────────────────────────
+function addTodo() {
+  const text = document.getElementById('new-todo').value.trim();
+  if (!text) return;
+  state.todos.push({ id: Date.now(), text, cat: document.getElementById('new-cat').value, done: false });
+  document.getElementById('new-todo').value = '';
+  renderTodos();
+  save('t-status');
 }
 
-function toggleTodo(id){
-  const t=state.todos.find(t=>t.id===id);
-  if(t){t.done=!t.done;renderTodos();save('t-status');}
+function toggleTodo(id) {
+  const t = state.todos.find(t => t.id === id);
+  if (t) { t.done = !t.done; renderTodos(); save('t-status'); }
 }
 
-function renderTodos(){
-  const cats=[...new Set(state.todos.map(t=>t.cat))];
-  const done=state.todos.filter(t=>t.done).length;
-  let html=`<div class="todo-counter">${done} of ${state.todos.length} complete</div>`;
-  cats.forEach(cat=>{
-    const items=state.todos.filter(t=>t.cat===cat);
-    html+=`<div class="todo-cat-block"><div class="todo-cat-label">${cat}</div>`;
-    items.forEach(t=>{html+=`<div class="todo-item"><input type="checkbox" ${t.done?'checked':''} onchange="toggleTodo(${t.id})"/><div class="todo-text ${t.done?'done':''}">${t.text}</div></div>`;});
-    html+='</div>';
+function renderTodos() {
+  const cats = [...new Set(state.todos.map(t => t.cat))];
+  const done = state.todos.filter(t => t.done).length;
+  let html = `<div class="todo-counter">${done} of ${state.todos.length} complete</div>`;
+  cats.forEach(cat => {
+    const items = state.todos.filter(t => t.cat === cat);
+    html += `<div class="todo-cat-block"><div class="todo-cat-label">${cat}</div>`;
+    items.forEach(t => {
+      html += `<div class="todo-item"><input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTodo(${t.id})"/><div class="todo-text ${t.done ? 'done' : ''}">${t.text}</div></div>`;
+    });
+    html += '</div>';
   });
-  document.getElementById('todo-list').innerHTML=html;
+  document.getElementById('todo-list').innerHTML = html;
 }
 
 init();
